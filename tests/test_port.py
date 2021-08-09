@@ -15,7 +15,7 @@ def test_for_nearest_port():
 
 def test_for_env_factors():
     port_management = pm.Port()
-    yp=port_management.env_factors(10.3,-4.2).iloc[0]
+    yp=port_management.env_factors(10.3,-4.2)
     print(yp)
     assert yp[0]==28.17 
     assert yp[1]== 22.25

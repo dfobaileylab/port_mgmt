@@ -1,11 +1,13 @@
 import threading
 import pandas as pd
+import os
 import numpy as np
 from scipy.spatial import cKDTree
 from geopandas import GeoDataFrame
 from shapely.geometry import Point
 from shapely.ops import nearest_points
-__EXCEL_DATA__='port_mgmt/data/port_data.xlsx'
+__EXCEL_DATA__ = 'data/port_data.xlsx'
+
 
 class Port:
     __instance = None
@@ -49,9 +51,9 @@ class Port:
         Returns:
             geoDataframe: a geodataframe generated from excel file that contains geomentry column
         """
-
+        data_path = os.path.join(os.path.dirname(__file__), __EXCEL_DATA__)
         xls_file = pd.ExcelFile(
-            __EXCEL_DATA__)
+            data_path)
         ports_dataframe = pd.read_excel(xls_file, 'portdataSep2019')
         geometry = [Point(xy) for xy in zip(
             ports_dataframe.Longitude, ports_dataframe.Latitude)]
@@ -86,8 +88,7 @@ class Port:
             return self.__geodataframe.loc[self.__geodataframe.geometry == nearest]
         else:
             # print("use shapely nearest point function")
-            return self.nearest_port( lat, lon)
-        
+            return self.nearest_port(lat, lon)
 
     def nearest_point_faster(self, location, gdf1):
         """using clustering to improve speed; experiment does not show a big difference
@@ -107,7 +108,7 @@ class Port:
         return Point(x.iloc[0].Longitude, x.iloc[0].Latitude)
 
     def ckdnearest(self, gdA, gdB):
-        assert self.__use_BTREE,"set use_BTREE to True"
+        assert self.__use_BTREE, "set use_BTREE to True"
 
         nA = np.array(list(gdA.geometry.apply(lambda x: (x.x, x.y))))
         # # print("nA:",nA)

@@ -38,9 +38,9 @@ class Port:
 
     def __init__(self, use_BTREE=False) -> None:
         self.__use_BTREE = use_BTREE
-        if Port.__instance == None:
+        if Port.__instance is None:
             Port.__instance = self
-        if self.__geodataframe == None:
+        if self.__geodataframe is None:
             self.__geodataframe = self.load_data()
 
     def load_data(self):

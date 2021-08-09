@@ -5,7 +5,7 @@ from scipy.spatial import cKDTree
 from geopandas import GeoDataFrame
 from shapely.geometry import Point
 from shapely.ops import nearest_points
-
+__EXCEL_DATA__='port_mgmt/data/port_data.xlsx'
 
 class Port:
     __instance = None
@@ -51,7 +51,7 @@ class Port:
         """
 
         xls_file = pd.ExcelFile(
-            'port_management/data/port_data.xlsx')
+            __EXCEL_DATA__)
         ports_dataframe = pd.read_excel(xls_file, 'portdataSep2019')
         geometry = [Point(xy) for xy in zip(
             ports_dataframe.Longitude, ports_dataframe.Latitude)]

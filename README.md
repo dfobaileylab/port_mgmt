@@ -45,4 +45,19 @@ Bailey, S. A., Bradie, J. N., Ogilvie, D. & Mudroch, P. (2020). Global port envi
 
 > Link to Source of Data: [Global port environmental data used for environmental distance calculations](https://datadryad.org/stash/dataset/doi:10.5061/dryad.69p8cz906)
 
+## Available functions:
+
+### Find nearest port.  
+`nearest_port(lat,long)`
+#### How to use it:
+
+```
+import port_mgmt.ports as pm
+port_management = pm.Port()
+yp=port_management.nearest_port(10.3,-4.2)
+print(yp.iloc[0].name)
+```
+
+The answer is **9598**  
+
 

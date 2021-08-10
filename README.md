@@ -60,4 +60,36 @@ print(yp.iloc[0].name)
 
 The answer is **9598**  
 
+### Find environmental factors:
+`env_factors()`
+
+```
+import port_mgmt.ports as pm
+port_management = pm.Port()
+yp=port_management.env_factors(10.3,-4.2)
+print(yp)
+```
+The answer would be:
+
+yp[0]==28.17 
+yp[1]== 22.25
+yp[2]== 25.5 
+yp[3] ==32.05
+
+### Calculate environmental distance
+`env_distance(lat,lon)`
+```
+import port_mgmt.ports as pm
+port_management = pm.Port()
+yp=port_management.env_distance(10.3,-4.2)
+print(yp)
+```
+The answer would be: **20.622**
+## how to install the package 
+
+A standard version of this library is available on [PyPI](https://pypi.org/project/port-mgmt/) 
+To install this package you should run the following command 
+`pip install port-mgmt`
+
+Note that this package will be updated to utilize an API for recieving data in future.
 
